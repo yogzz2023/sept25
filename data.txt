@@ -1,0 +1,49 @@
+i want each track id to hold its current state and states of existing measurements 
+like example  Track id 1: current state : like firm  
+measurement 1 : state : poss 1 
+measurement 2 : state : tentative 1 
+measurement 3 : state: firm 
+measurement 4 : state: firm 
+
+
+ Track id 1: current state : like poss 1 
+measurement 1 : state : poss 1 
+
+
+ Track id 2: current state : like tentiative1
+measurement 1 : state : poss 1 
+measurement 2 : state : tentative 1 
+
+
+then finally the track id and its respective summary 
+
+update this logic and integrate it to my code 
+
+
+also we need to get the hit and miss counts and also it has to show if track id is occupied or free and also if any track id is removed
+do these changes and update ands integrate it to my code
+
+
+# Check and manage track deletions based on miss counts
+for track_id, miss_count in miss_counts.items():
+    if miss_count >= firm_threshold:
+        print(f"Removing track ID {track_id} due to {miss_count} consecutive misses.")
+        firm_ids.discard(track_id)
+        del tracks[track_id]
+        track_id_list[track_id - 1]['state'] = 'free'
+        del hit_counts[track_id]
+        del miss_counts[track_id]
+        del state_map[track_id]
+
+# Final track state summary
+print("\nTrack Summary:")
+for track in tracks:
+    track_id = track['track_id']
+    state = track['current_state']
+    measurements = track['measurements']
+    print(f"Track ID: {track_id}, State: {state}, Number of Measurements: {len(measurements)}")
+    print(f"Current filter state:\n{track['Sf'].flatten()}")
+    ~~~`
+if doppler_correlated and range_satisfied and time_diff <= time_threshold:
+
+i need like this it has to check for both doppler and range not just range
